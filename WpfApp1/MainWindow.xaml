@@ -8,11 +8,25 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <TabControl>
-            <TabItem x:Name="Książki">
-                
+            <TabItem x:Name="ksiazki_zakladka" Header="Książki">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="10*"/>
+                    </Grid.ColumnDefinitions>
+                    <!-- LISTA KSIĄŻEK -->
+                    <ListView x:Name="ksiazki_lista" Grid.Column="0">
+                        
+                    </ListView>
+                </Grid>
             </TabItem>
             
-            <TabItem x:Name="Autorzy">
+            <TabItem x:Name="Autorzy" Header="Autorzy">
+
+            </TabItem>
+
+            <TabItem x:Name="Dodaj_ksiazke" Header="Dodaj książkę">
 
             </TabItem>
         </TabControl>
