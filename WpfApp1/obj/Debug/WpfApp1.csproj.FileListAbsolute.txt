@@ -12,3 +12,4 @@ C:\Users\tosia\source\repos\BoQuester\BoQuester\WpfApp1\obj\Debug\WpfApp1.csproj
 C:\Users\tosia\source\repos\BoQuester\BoQuester\WpfApp1\obj\Debug\WpfApp1.csproj.CoreCompileInputs.cache
 C:\Users\tosia\source\repos\BoQuester\BoQuester\WpfApp1\obj\Debug\WpfApp1.exe
 C:\Users\tosia\source\repos\BoQuester\BoQuester\WpfApp1\obj\Debug\WpfApp1.pdb
+C:\Users\tosia\source\repos\BoQuester\BoQuester\WpfApp1\obj\Debug\WpfApp1.csprojAssemblyReference.cache
