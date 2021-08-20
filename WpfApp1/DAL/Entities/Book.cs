@@ -51,6 +51,18 @@ namespace WpfApp1.DAL.Entities
           
         }
 
+        public override bool Equals(object obj)
+        {
+            var book = obj as Book;
+            if (book is null) return false;
+            if (Title.ToLower() != book.Title.ToLower()) return false;
+            if (ReleaseDate.ToLower() != book.ReleaseDate.ToLower()) return false;
+            if (Publisher != book.Publisher) return false;
+            if (Category.ToLower() != book.Category.ToLower()) return false;
+            if (Description.ToLower() != book.Description.ToLower()) return false;
+            return true;
+        }
+
 
     }
 }
