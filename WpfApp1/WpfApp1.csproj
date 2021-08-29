@@ -92,7 +92,14 @@
     <Compile Include="DAL\DBConnection.cs" />
     <Compile Include="DAL\Entities\Author.cs" />
     <Compile Include="DAL\Entities\Book.cs" />
+    <Compile Include="DAL\Entities\BookAuthor.cs" />
+    <Compile Include="DAL\Entities\BookUser.cs" />
     <Compile Include="DAL\Entities\Publisher.cs" />
+    <Compile Include="DAL\Entities\User.cs" />
+    <Compile Include="DAL\Repositories\AuthorRepository.cs" />
+    <Compile Include="DAL\Repositories\BookAuthorRepository.cs" />
+    <Compile Include="DAL\Repositories\BookRepository.cs" />
+    <Compile Include="DAL\Repositories\BookUserRepository.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

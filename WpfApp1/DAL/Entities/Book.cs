@@ -28,7 +28,7 @@ namespace WpfApp1.DAL.Entities
             Rate = double.Parse(reader["rate"].ToString());
         }
         //konstruktor tworzacy obiekt nie dodany jeszcze do bazy z id pustym
-        public Book(string title, string releaseDate, sbyte publisher, string category, string description, double rate)
+        public Book(string title, string releaseDate, sbyte publisher, string category, string description)
         {
             Id = null;
             Title = title.Trim();
@@ -36,7 +36,7 @@ namespace WpfApp1.DAL.Entities
             Publisher = publisher;
             Category = category.Trim();
             Description = description.Trim();
-            Rate = rate;
+            Rate = 0;
         }
 
         public Book(Book book)
@@ -47,8 +47,22 @@ namespace WpfApp1.DAL.Entities
             Publisher = book.Publisher;
             Category = book.Category;
             Description = book.Description;
-            Rate = book.Rate;
-          
+            Rate = book.Rate;      
+        }
+
+        public override string ToString()
+        {
+            return $" \"{Title}\"  ";
+        }
+
+        public string ToInsert()
+        {
+            return $"('{Title}', '{ReleaseDate}', {Publisher}, '{Category}', '{Description}', '{Rate}')";
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
 
         public override bool Equals(object obj)

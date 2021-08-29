@@ -9,7 +9,7 @@ namespace WpfApp1.DAL.Entities
 {
     class BookUser
     {
-        public sbyte BooksUsersId { get; set; }
+        public sbyte? BooksUsersId { get; set; }
         public sbyte UserId { get; set; }
         public sbyte BookId { get; set; }
         public bool IsRead { get; set; }
@@ -25,5 +25,32 @@ namespace WpfApp1.DAL.Entities
             WantToRead = bool.Parse(reader["want_to_read"].ToString());
             Rate = int.Parse(reader["rate"].ToString());
         }
+
+        public BookUser(sbyte userId, sbyte bookId, bool isRead, bool wantToRead, int rate = 0)
+        {
+            BooksUsersId = null;
+            UserId = userId;
+            BookId = bookId;
+            IsRead = isRead;
+            WantToRead = wantToRead;
+            Rate = rate;
+        }
+
+        public BookUser(BookUser bookUser)
+        {
+            BooksUsersId = bookUser.BooksUsersId;
+            UserId = bookUser.UserId;
+            BookId = bookUser.BookId;
+            IsRead = bookUser.IsRead;
+            WantToRead = bookUser.WantToRead;
+            Rate = bookUser.Rate;
+        }
+
+        public string ToInsert()
+        {
+            return $"('{UserId}', '{BookId}', {IsRead}, '{WantToRead}', '{Rate}')";
+        }
+
+
     }
 }

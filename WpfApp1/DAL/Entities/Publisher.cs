@@ -17,17 +17,18 @@ namespace WpfApp1.DAL.Entities
             Publisher_id = sbyte.Parse(reader["publisher_id"].ToString());
             Name = reader["name"].ToString();
         }
-        public Publisher(string name)
-        {
-            Publisher_id = null;
-            Name = name.Trim();
-        }
 
         public Publisher(Publisher publisher)
         {
             Publisher_id = publisher.Publisher_id;
             Name = publisher.Name;
         }
+
+        public override string ToString()
+        {
+            return $"{Name}";
+        }
+
 
 
     }
