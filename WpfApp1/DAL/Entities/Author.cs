@@ -16,7 +16,7 @@ namespace WpfApp1.DAL.Entities
         public string Birth_date { get; set; }
         public int Written_books { get; set; }
 
-        public Author(MySqlDataReader reader )
+        public Author(MySqlDataReader reader)
         {
             Author_id = sbyte.Parse(reader["book_id"].ToString());
             Name = reader["name"].ToString();
@@ -45,13 +45,28 @@ namespace WpfApp1.DAL.Entities
             Written_books = author.Written_books;
         }
 
+        public string ToInsert()
+        {
+            return $"('{Name}', '{Last_name}', {Description}, '{Birth_date}', '{Written_books}')";
+        }
+
+        public override string ToString()
+        {
+            return $"{Name} {Last_name}";
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode(); 
+        }
+
         public override bool Equals(object obj)
         {
             var author = obj as Author;
             if (author is null) return false;
             if (Name.ToLower() != author.Name.ToLower()) return false;
             if (Last_name.ToLower() != author.Last_name.ToLower()) return false;
-            if (Birth_date != author.Birth_date) return false;
+            if (Birth_date.ToLower() != author.Birth_date.ToLower()) return false;
             return true;
         }
     }
