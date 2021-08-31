@@ -13,7 +13,7 @@ namespace WpfApp1.DAL.Repositories
     {
 
         #region QUERIES
-        private const string ALL_USERS = "SELECT * FROM users";
+        private const string ALL_USERS = "SELECT * FROM user";
         #endregion
 
         #region CRUD methods

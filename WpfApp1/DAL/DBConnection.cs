@@ -27,7 +27,6 @@ namespace WpfApp1.DAL
 
         private DBConnection()
         {
-
             //stworzenie connection stringa na podstawie danych zapisanych w Settings do których mamy dostęp spoza aplikacji 
             stringBuilder.UserID = Properties.Settings.Default.userID;
             stringBuilder.Server = Properties.Settings.Default.server;
