@@ -18,7 +18,8 @@ namespace WpfApp1.ViewModel
     {
         #region private
         private Model model = new Model();
-        private string username, password;
+        private string username;
+        private bool isWindowVisible = true;
         #endregion
 
         #region constructors
@@ -45,6 +46,15 @@ namespace WpfApp1.ViewModel
             }
         }
 
+        public bool IsWindowVisible
+        {
+            get { return isWindowVisible; }
+            set
+            {
+                isWindowVisible = value;
+                onPropertyChanged(nameof(IsWindowVisible));
+            }
+        }
         #endregion
 
         private ICommand correctPassword = null;
@@ -61,6 +71,7 @@ namespace WpfApp1.ViewModel
             {
                 MessageBox.Show("Correct");              
                 MainWindow app = new MainWindow();
+                IsWindowVisible = false;
                 app.Show();                        
             }
             else

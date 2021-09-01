@@ -10,7 +10,6 @@ namespace WpfApp1.ViewModel
     class MainViewModel
     {
         private Model model = new Model();
-
         public LoginScreen LoginScreenVM { get; set; }
 
         public MainViewModel()

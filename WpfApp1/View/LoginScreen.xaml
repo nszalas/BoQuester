@@ -13,7 +13,15 @@
     <Window.DataContext>
         <vm:MainViewModel x:Name="MainViewModel"/>
     </Window.DataContext>
+    
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"></BooleanToVisibilityConverter>
+    </Window.Resources>
 
+    <Window.Visibility>
+        <Binding Path="LoginScreenVM.IsWindowVisible" Mode="TwoWay" Converter="{StaticResource BooleanToVisibilityConverter}" />
+    </Window.Visibility>
+    
     <Grid Background="AntiqueWhite">
         <Border Margin="20">
             <StackPanel>
