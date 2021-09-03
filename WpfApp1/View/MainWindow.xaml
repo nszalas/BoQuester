@@ -22,9 +22,9 @@
                         <ColumnDefinition Width="10*"/>
                     </Grid.ColumnDefinitions>
                     <!-- LISTA KSIĄŻEK -->
-                    <ListView x:Name="ksiazki_lista" Grid.Column="0">
+                    <ListBox x:Name="ksiazki_lista" Grid.Column="0" ItemsSource="{Binding Books}">
                         
-                    </ListView>
+                    </ListBox>
                 </Grid>
             </TabItem>
             

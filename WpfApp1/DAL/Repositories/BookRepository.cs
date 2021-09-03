@@ -15,7 +15,7 @@ namespace WpfApp1.DAL.Repositories
         private const string ADD_BOOK = "INSERT INTO `book`(`title`, `release_date`, `publisher`, `category`, `description`, `rate`) VALUES ";
         private const string ALL_BOOKS = "SELECT * FROM book";
         #endregion
-
+        
         #region CRUD methods
         /// <summary>
         /// CRUD - create, read, update, delete
