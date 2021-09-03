@@ -13,12 +13,14 @@ namespace WpfApp1.ViewModel
     using System.Collections.ObjectModel;
     using System.Windows;
     using System.Windows.Controls;
+    using System.Security.Authentication;
 
     class LoginScreen:BaseViewModel
     {
         #region private
         private Model model = new Model();
         private string username;
+        private User currentUser;
         private bool isWindowVisible = true;
         #endregion
 
@@ -46,6 +48,16 @@ namespace WpfApp1.ViewModel
             }
         }
 
+        public User CurrentUser
+        {
+            get { return currentUser; }
+            set
+            {
+                currentUser = value;
+                onPropertyChanged(nameof(CurrentUser));
+            }
+        }
+
         public bool IsWindowVisible
         {
             get { return isWindowVisible; }
@@ -60,27 +72,40 @@ namespace WpfApp1.ViewModel
         private ICommand correctPassword = null;
 
         public ICommand CorrectPassword => correctPassword ?? (
-            correctPassword = new RelayCommand(checkCorrectPassword, p => true)
+            correctPassword = new RelayCommand(authenticate, p => true)
         );
         
-        private void checkCorrectPassword(object param)
+        private void authenticate(object param)
         {
             var passBox = param as PasswordBox;
             string password = passBox.Password;
-            if(model.CorrectPassword(Username, password))
+            Session session = null;
+            try
             {
-                MessageBox.Show("Correct");              
-                MainWindow app = new MainWindow();
-                IsWindowVisible = false;
-                app.Show();                        
+                session = Session.GetOrCreateSession(Username, password);
             }
-            else
+            catch(AuthenticationException error)
             {
-                MessageBox.Show("Password or username is not correct");
+                MessageBox.Show(error.Message, "Authentication error");
             }
+
+            if(session == null)
+            {              
+            }
+            else if (session != null)
+            {
+                if (session.IsAuthenticated)
+                {
+                    MainWindow app = new MainWindow();
+                    IsWindowVisible = false;
+                    app.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Username or Password wan incorrect");
+                }
+            }
+           
         }
-
-      
-
     }
 }

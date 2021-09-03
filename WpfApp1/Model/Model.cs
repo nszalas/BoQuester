@@ -18,19 +18,10 @@ namespace WpfApp1.Model
         public Model()
         {
             var users = UserRepository.getUsers();
-            foreach (var user in users)         
+            foreach (var user in users)
                 Users.Add(user);
         }
 
-        public bool CorrectPassword(string username, string password)
-        {
-            foreach (var user in Users)
-            {
-                if (username == user.Login & password == user.Password)
-                    return true;
-            }
-            return false;
-        }
 
     }
 }

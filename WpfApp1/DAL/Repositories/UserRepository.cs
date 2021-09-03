@@ -32,6 +32,25 @@ namespace WpfApp1.DAL.Repositories
             }
             return users;
         } 
+
+        public static User getUser(string username)
+        {
+            User user = null;
+            using (var connection = DBConnection.Instance.Connection)
+            {
+                string GET_USER = $"SELECT * FROM user WHERE login = '{username}'";
+                MySqlCommand command = new MySqlCommand(GET_USER, connection);
+                connection.Open();
+                var reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    user = new User(reader);
+                }
+                    
+                connection.Close();
+            }
+            return user;
+        }
         
         #endregion
     }
