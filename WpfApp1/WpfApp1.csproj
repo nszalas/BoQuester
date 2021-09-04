@@ -111,9 +111,10 @@
     <Compile Include="Model\UserAuthentication.cs" />
     <Compile Include="ViewModel\BaseClass\BaseViewModel.cs" />
     <Compile Include="ViewModel\BaseClass\RelayCommand.cs" />
-    <Compile Include="ViewModel\BooksList.cs" />
     <Compile Include="ViewModel\LoginScreen.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\TabDodajKsiazkiViewModel.cs" />
+    <Compile Include="ViewModel\TabListaViewModel.cs" />
     <Compile Include="View\LoginScreen.xaml.cs">
       <DependentUpon>LoginScreen.xaml</DependentUpon>
     </Compile>

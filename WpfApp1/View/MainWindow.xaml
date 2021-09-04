@@ -3,31 +3,32 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:WpfApp1"
         xmlns:vm="clr-namespace:WpfApp1.ViewModel"
         mc:Ignorable="d"
         Title="BoQuester" Height="450" Width="800">
-    
+
     <Window.Resources>
         <vm:MainViewModel x:Key="mainVM"/>
     </Window.Resources>
 
-    <Window.DataContext>
+    <!--<Window.DataContext>
         <vm:MainViewModel x:Name="MainViewModel"/>
-    </Window.DataContext>
+    </Window.DataContext>-->
 
 
-    <Grid>
+    <Grid DataContext="{StaticResource mainVM}">
 
         <TabControl>
             <TabItem x:Name="ksiazki_zakladka" Header="Książki">
                 <Grid>
-                    <Grid.ColumnDefinitions>
+                    <!--<Grid.ColumnDefinitions>
                         <ColumnDefinition Width="10*"/>
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="10*"/>
-                    </Grid.ColumnDefinitions>
-                    <!-- LISTA KSIĄŻEK -->
+                    </Grid.ColumnDefinitions>-->
+                    
 
                     <ComboBox Margin="0,5,9,360" SelectedIndex="0" x:Name="cb">
                         <ComboBoxItem x:Name="wszystkie_ksiazki">
@@ -40,10 +41,102 @@
                             <TextBlock Text="Przeczytane książki"/>
                         </ComboBoxItem>
                     </ComboBox>
+                    <!-- LISTA KSIĄŻEK -->
+                    <ListView x:Name="ksiazki"  
+                              SelectedItem="{Binding TabListaVM.BiezacaKsiazka}" 
+                              ItemsSource="{Binding TabListaVM.Ksiazki}"
+                              SelectedIndex="{Binding TabListaVM.IndeksZaznaczonejKsiazki, Mode=TwoWay}" Margin="0,40,0,0">
 
-                    <ListBox x:Name="ksiazki_lista" Grid.Column="0" ItemsSource="{Binding Books}" IsSynchronizedWithCurrentItem="true" Margin="0,40,0,0">
-                            <!--<ListBoxItem>Item 1</ListBoxItem>-->
-                        </ListBox>
+                        <!--<i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding TabListaVM.ZaladujKsiazki}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>-->
+
+                        <ListView.View>
+                            <GridView>
+                                <GridView.Columns>
+                                    <GridViewColumn Width="150" x:Name="kolumna_Tytul">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Title}" FontSize="14"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="Tytuł" Background="AliceBlue" Width="{Binding ActualWidth, ElementName=kolumna_Tytul}" >
+                                             <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="MouseDown">
+                                                    <i:InvokeCommandAction Command="{Binding TabListaVM.ZaladujWszystkieKsiazki}"/>
+                                                </i:EventTrigger>
+                                              </i:Interaction.Triggers>
+                                            </TextBlock>
+                                        </GridViewColumn.Header>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding ReleaseDate}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="Data wydania"></TextBlock>
+                                        </GridViewColumn.Header>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn >
+                                        <GridViewColumn.CellTemplate >
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Publisher}"  HorizontalAlignment="Stretch"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="Wydawnictwo"></TextBlock>
+                                        </GridViewColumn.Header>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn Width="150">
+                                        <GridViewColumn.CellTemplate >
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Category}"  HorizontalAlignment="Stretch"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="Kategoria"></TextBlock>
+                                        </GridViewColumn.Header>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn Width="280">
+                                        <GridViewColumn.CellTemplate >
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Description}"  HorizontalAlignment="Stretch"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="Opis"></TextBlock>
+                                        </GridViewColumn.Header>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn >
+                                        <GridViewColumn.CellTemplate >
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Rate}"  HorizontalAlignment="Stretch"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="Ocena"></TextBlock>
+                                        </GridViewColumn.Header>
+                                    </GridViewColumn>
+                                </GridView.Columns>
+                            </GridView>
+                        </ListView.View>
+
+                    </ListView>
+                    
+                    
+                    <!--<ListBox x:Name="ksiazki_lista" Grid.Column="0" ItemsSource="{Binding Books}" IsSynchronizedWithCurrentItem="true" Margin="0,40,0,0">
+                
+                    </ListBox>-->
                 </Grid>
             </TabItem>
 
@@ -68,6 +161,7 @@
                                 <ColumnDefinition Width="1*"/>
                                 <ColumnDefinition Width="0.4*"/>
                                 <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="1*"/>
                             </Grid.ColumnDefinitions>
 
                             <ComboBox Grid.Column="0" x:Name="cb_dzien">
@@ -78,10 +172,9 @@
 
                             </ComboBox>
                             <TextBlock Grid.Column="3" Text="-" HorizontalAlignment="Center" />
-                            <ComboBox Grid.Column="3" x:Name="cb_rok" Grid.ColumnSpan="2" Margin="20.6,0,70.6,0.4" >
+                            <ComboBox Grid.Column="4" x:Name="cb_rok" Margin="3.4,0,35.8,0" />
+                            <TextBox Grid.Column="4" Text="{Binding DodajKsiazkeVM.ReleaseDate}" Grid.ColumnSpan="2" Margin="119.4,0,-0.4,0" />
 
-                            </ComboBox>
-                
                         </Grid>
                         <StackPanel Margin="0,10,0,0">
                             <TextBlock Text="Wydawnictwo:"/>
@@ -91,8 +184,8 @@
                             <TextBlock Text="Opis:"/>
                             <TextBox x:Name="description"  Text="{Binding DodajKsiazkeVM.Description}" Margin="0,10,-0.4,0" Height="109"/>
                         </StackPanel>
-            
-                        
+
+
                     </StackPanel>
                 </Grid>
             </TabItem>
