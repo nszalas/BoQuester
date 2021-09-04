@@ -30,6 +30,7 @@ namespace WpfApp1.ViewModel
             }
         }
 
+
         public MainViewModel()
         {
             Books = WpfApp1.DAL.Repositories.BookRepository.getBooks();

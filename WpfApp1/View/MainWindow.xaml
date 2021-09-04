@@ -6,10 +6,15 @@
         xmlns:local="clr-namespace:WpfApp1"
         xmlns:vm="clr-namespace:WpfApp1.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="BoQuester" Height="450" Width="800">
     <Window.Resources>
         <vm:MainViewModel x:Key="mainVM"/>
     </Window.Resources>
+    
+    <Window.DataContext>
+        <vm:MainViewModel x:Name="MainViewModel"/>
+    </Window.DataContext>
+    
     
     <Grid>
         
@@ -22,8 +27,8 @@
                         <ColumnDefinition Width="10*"/>
                     </Grid.ColumnDefinitions>
                     <!-- LISTA KSIĄŻEK -->
-                    <ListBox x:Name="ksiazki_lista" Grid.Column="0" ItemsSource="{Binding Books}">
-                        
+                    <ListBox x:Name="ksiazki_lista" Grid.Column="0" ItemsSource="{Binding Books}" IsSynchronizedWithCurrentItem="true">
+                        <!--<ListBoxItem>Item 1</ListBoxItem>-->
                     </ListBox>
                 </Grid>
             </TabItem>
