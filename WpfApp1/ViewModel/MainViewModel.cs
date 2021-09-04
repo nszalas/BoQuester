@@ -11,7 +11,7 @@ namespace WpfApp1.ViewModel
     using BaseClass;
     using System.ComponentModel;
 
-    class MainViewModel : INotifyPropertyChanged
+    class MainViewModel 
     {
         private Model model = new Model();
         public LoginScreen LoginScreenVM { get; set; }
@@ -30,13 +30,12 @@ namespace WpfApp1.ViewModel
             }
         }
 
-
         public MainViewModel()
         {
             Books = WpfApp1.DAL.Repositories.BookRepository.getBooks();
             LoginScreenVM = new LoginScreen(model);
 
-
+           
         }
     }
 }
