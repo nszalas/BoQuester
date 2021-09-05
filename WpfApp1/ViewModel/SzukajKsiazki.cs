@@ -10,6 +10,8 @@ namespace WpfApp1.ViewModel
     using WpfApp1.Model;
     using WpfApp1.DAL.Entities;
     using System.Collections.ObjectModel;
+    using System.Windows.Input;
+
     class SzukajKsiazki : BaseViewModel
     {
         private Model model = null;
@@ -71,6 +73,19 @@ namespace WpfApp1.ViewModel
             }
         }
 
+        private ICommand szukaj;
 
+        public ICommand Szukaj
+        {
+            get
+            {
+                *tutaj wyszukanie w konkretnej kolumnie
+                if(znajdzie )
+                    too wyswietla dane
+                if nie
+                    napis "brak takiej ksiazki w bazie"
+
+            }
+        }
     }
 }
