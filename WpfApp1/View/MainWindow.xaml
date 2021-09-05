@@ -20,8 +20,12 @@
         <TabControl>
             <TabItem x:Name="ksiazki_zakladka" Header="Książki">
                 <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="79*"/>
+                        <ColumnDefinition Width="709*"/>
+                    </Grid.ColumnDefinitions>
 
-                    <ComboBox Margin="0,5,9,360" SelectedIndex="0" x:Name="cb">
+                    <ComboBox Margin="0,5,9,360" SelectedIndex="0" x:Name="cb" Grid.ColumnSpan="2">
                         <ComboBoxItem x:Name="wszystkie_ksiazki">
                             <TextBlock Text="Wszystkie książki"/>
                         </ComboBoxItem>
@@ -36,7 +40,7 @@
                     <ListView x:Name="ksiazki"  
                               SelectedItem="{Binding TabListaVM.BiezacaKsiazka}" 
                               ItemsSource="{Binding TabListaVM.Ksiazki}"
-                              SelectedIndex="{Binding TabListaVM.IndeksZaznaczonejKsiazki, Mode=TwoWay}" Margin="0,40,0,0">
+                              SelectedIndex="{Binding TabListaVM.IndeksZaznaczonejKsiazki, Mode=TwoWay}" Margin="0,40,0,0" Grid.ColumnSpan="2">
 
 
                         <ListView.View>
@@ -129,6 +133,22 @@
             <TabItem x:Name="Autorzy" Header="Autorzy">
 
             </TabItem>
+            <TabItem x:Name="Szukaj" Header="Szukaj książki">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="0.4*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="3*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock x:Name="nKsiazki" Grid.Row="0" Grid.Column="0" Background="Gray"/>
+                    <Button x:Name="bKsiazki" Grid.Column="1" Grid.Row="0" Content="Szukaj"/>
+                    <TextBox x:Name="tbKsiazki" Text="{Binding SzukajKsiazki.tytul}" Grid.Row="1" Grid.ColumnSpan="2" Background="Green"/>
+                </Grid>
+
+            </TabItem>
 
             <TabItem x:Name="Dodaj_ksiazke" Header="Dodaj książkę">
                 <Grid>
@@ -141,7 +161,7 @@
                         <TextBox x:Name="title"  Text="{Binding TabDodajKsiazkiVM.Title}" Margin="0,7,-0.4,5"/>
                         <TextBlock Text="Data wydania: (yyyy-mm-dd)" Margin="0,10,0,0"/>
                         <TextBox Text="{Binding TabDodajKsiazkiVM.ReleaseDate}" Margin="0,5,-0.4,0" Height="22" />
-                        
+
                         <StackPanel Margin="0,10,0,0">
 
                             <TextBlock Text="Wydawnictwo:"/>
@@ -192,7 +212,7 @@
                         SelectedItem="{Binding TabDodajKsiazkiVM.BiezacaKsiazka}" 
                         ItemsSource="{Binding TabDodajKsiazkiVM.Ksiazki}"
                         SelectedIndex="{Binding TabDodajKsiazkiVM.IdZaznaczenia, Mode=TwoWay}" Margin="315,0,0,0" Grid.ColumnSpan="2">
-                        
+
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Tytuł" Binding="{Binding Title}"/>
                             <DataGridTextColumn Header="Data wydania" Binding="{Binding ReleaseDate }"/>

@@ -17,6 +17,7 @@ namespace WpfApp1.ViewModel
         public LoginScreen LoginScreenVM { get; set; }
         public TabListaViewModel TabListaVM { get; set; }
         public TabDodajKsiazkiViewModel TabDodajKsiazkiVM { get; set; }
+        public SzukajKsiazki SzukajKsiazki { get; set; }
 
         //private List<Book> books;
 
@@ -38,6 +39,7 @@ namespace WpfApp1.ViewModel
             LoginScreenVM = new LoginScreen(model);
             TabListaVM = new TabListaViewModel(model);
             TabDodajKsiazkiVM = new TabDodajKsiazkiViewModel(model);
+            SzukajKsiazki = new SzukajKsiazki(model);
 
         }
     }
