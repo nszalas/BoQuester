@@ -16,6 +16,7 @@ namespace WpfApp1.Model
         public ObservableCollection<Book> Ksiazki { get; set; } = new ObservableCollection<Book>();
         public ObservableCollection<Book> DoPrzeczytania { get; set; } = new ObservableCollection<Book>();
         public ObservableCollection<Book> Przeczytane { get; set; } = new ObservableCollection<Book>();
+      
 
         // get data from database to collection
         public Model()

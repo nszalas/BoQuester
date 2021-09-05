@@ -94,6 +94,7 @@ namespace WpfApp1.ViewModel
         }
         public void OdswiezKsiazki() => Ksiazki = model.Ksiazki;
 
+       
 
     }
 }

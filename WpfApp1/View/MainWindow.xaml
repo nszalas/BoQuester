@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:WpfApp1"
         xmlns:vm="clr-namespace:WpfApp1.ViewModel"
         mc:Ignorable="d"
@@ -13,22 +14,12 @@
         <vm:MainViewModel x:Key="mainVM"/>
     </Window.Resources>
 
-    <!--<Window.DataContext>
-        <vm:MainViewModel x:Name="MainViewModel"/>
-    </Window.DataContext>-->
-
 
     <Grid DataContext="{StaticResource mainVM}">
 
         <TabControl>
             <TabItem x:Name="ksiazki_zakladka" Header="Książki">
                 <Grid>
-                    <!--<Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="10*"/>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="10*"/>
-                    </Grid.ColumnDefinitions>-->
-
 
                     <ComboBox Margin="0,5,9,360" SelectedIndex="0" x:Name="cb">
                         <ComboBoxItem x:Name="wszystkie_ksiazki">
@@ -47,11 +38,6 @@
                               ItemsSource="{Binding TabListaVM.Ksiazki}"
                               SelectedIndex="{Binding TabListaVM.IndeksZaznaczonejKsiazki, Mode=TwoWay}" Margin="0,40,0,0">
 
-                        <!--<i:Interaction.Triggers>
-                            <i:EventTrigger EventName="SelectionChanged">
-                                <i:InvokeCommandAction Command="{Binding TabListaVM.ZaladujKsiazki}"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>-->
 
                         <ListView.View>
                             <GridView>
@@ -155,36 +141,24 @@
                         <TextBox x:Name="title"  Text="{Binding TabDodajKsiazkiVM.Title}" Margin="0,7,-0.4,5"/>
                         <TextBlock Text="Data wydania: (yyyy-mm-dd)" Margin="0,10,0,0"/>
                         <TextBox Text="{Binding TabDodajKsiazkiVM.ReleaseDate}" Margin="0,5,-0.4,0" Height="22" />
-                        <!--<Grid Margin="0,10,0,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="0.4*"/>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="0.4*"/>
-                                <ColumnDefinition Width="3*"/>
-                                <ColumnDefinition Width="1*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <ComboBox Grid.Column="0" x:Name="cb_dzien">
-                      
-                            </ComboBox>
-                            <TextBlock Grid.Column="1" Text="-" HorizontalAlignment="Center" />
-                            <ComboBox Grid.Column="2" x:Name="cb_miesiac">
-
-                            </ComboBox>
-                            <TextBlock Grid.Column="3" Text="-" HorizontalAlignment="Center" />
-                            <ComboBox Grid.Column="4" x:Name="cb_rok" Margin="3.4,0,35.8,0" />
-                            <TextBox Grid.Column="4" Text="{Binding DodajKsiazkeVM.ReleaseDate}" Grid.ColumnSpan="2" Margin="119.4,0,-0.4,0" />
-
-                        </Grid>-->
+                        
                         <StackPanel Margin="0,10,0,0">
 
                             <TextBlock Text="Wydawnictwo:"/>
 
-
-                            <!--<TextBox x:Name="publisher"  Text="{Binding DodajKsiazkeVM.Publisher}" Margin="0,10,0,0"/>-->
                             <DockPanel>
-                                <ComboBox Grid.Column="2" x:Name="cb_publisher" SelectedItem="{Binding TabDodajKsiazkiVM.Publisher}" Width="53" Margin="0,5,0,0"></ComboBox>
+                                <ComboBox Grid.Column="2" x:Name="cb_publisher" SelectedItem="{Binding TabDodajKsiazkiVM.Publisher}" Width="53" Margin="0,5,0,0">
+                                    <ComboBox.ItemsSource>
+                                        <x:Array Type="{x:Type sys:Int32}">
+                                            <sys:Int32>1</sys:Int32>
+                                            <sys:Int32>2</sys:Int32>
+                                            <sys:Int32>3</sys:Int32>
+                                            <sys:Int32>4</sys:Int32>
+                                            <sys:Int32>5</sys:Int32>
+                                            <sys:Int32>6</sys:Int32>
+                                        </x:Array>
+                                    </ComboBox.ItemsSource>
+                                </ComboBox>
                                 <TextBlock Text="Zobacz wydawnictwa" ToolTip="1.) Sonia Draga 2.) Czwarta Strona 3.) Debit 4.) Filia 5.) Tandem 6.) Prószyński i S-ka" Width="116" Margin="0,5,0,0"/>
                             </DockPanel>
                             <TextBlock Text="Kategoria/Gatunek:" Margin="0,10,0,0"/>
