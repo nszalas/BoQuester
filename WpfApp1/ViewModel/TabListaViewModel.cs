@@ -16,6 +16,8 @@ namespace WpfApp1.ViewModel
     {
         private Model model = null;
         private ObservableCollection<Book> ksiazki = null;
+        private ObservableCollection<Book> doPrzeczytania = null;
+        private ObservableCollection<Book> przeczytane = null;
 
         private int indeksZaznaczonejKsiazki = -1;
 
@@ -52,26 +54,25 @@ namespace WpfApp1.ViewModel
             }
         }
 
-        //private ICommand zaladujKsiazki = null;
-        //public ICommand ZaladujKsiazki
-        //{
-        //    get
-        //    {
-        //        Console.WriteLine("y");
-        //        if (zaladujKsiazki == null)
-        //            zaladujKsiazki = new RelayCommand(
-        //                arg =>
-        //                {
+        public ObservableCollection<Book> DoPrzeczytania
+        {
+            get { return doPrzeczytania; }
+            set
+            {
+                doPrzeczytania = value;
+                onPropertyChanged(nameof(DoPrzeczytania));
+            }
+        }
 
-        //                    if (BiezacyTelefon != null)
-        //                        Ksiazki = model.PobierzWlascicieliTelefonu(BiezacyTelefon);
-        //                },
-        //                arg => true
-        //                );
-
-        //        return zaladujKsiazki;
-        //    }
-        //}
+        public ObservableCollection<Book> Przeczytane
+        {
+            get { return przeczytane; }
+            set
+            {
+                przeczytane = value;
+                onPropertyChanged(nameof(Przeczytane));
+            }
+        }
 
         private ICommand zaladujWyszystkieKsiazki = null;
         public ICommand ZaladujWszystkieKsiazki

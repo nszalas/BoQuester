@@ -17,7 +17,6 @@ namespace WpfApp1.ViewModel
 
         private string title, releaseDate, category, description;
         private int publisher, idZaznaczenia = -1;
-       // private double rate;
         private bool dodawanieDostepne = true;
         private bool edycjaDostepna = false;
 
@@ -79,16 +78,6 @@ namespace WpfApp1.ViewModel
             }
         }
 
-        //public double Rate
-        //{
-        //    get { return rate; }
-        //    set
-        //    {
-        //        rate = value;
-        //        onPropertyChanged(nameof(Rate));
-        //    }
-        //}
-
        
         public int IdZaznaczenia
         {
@@ -112,7 +101,6 @@ namespace WpfApp1.ViewModel
             }
         }
 
-
         public bool EdycjaDostepna
         {
             get { return edycjaDostepna; }
@@ -123,7 +111,6 @@ namespace WpfApp1.ViewModel
             }
         }
 
-        // DODAWANIE
 
         private ICommand dodaj = null;
 
@@ -160,7 +147,6 @@ namespace WpfApp1.ViewModel
             Publisher = 0;
             Category = "";
             Description = "";
-           // Rate = 0;
             DodawanieDostepne = true;
             EdycjaDostepna = false;
         }
@@ -182,7 +168,6 @@ namespace WpfApp1.ViewModel
                                 Publisher = BiezacaKsiazka.Publisher;
                                 Category = BiezacaKsiazka.Category;
                                 Description = BiezacaKsiazka.Description;
-                               // Rate = BiezacaKsiazka.Rate;
                                 DodawanieDostepne = false;
                                 EdycjaDostepna = true;
                             }
@@ -193,7 +178,6 @@ namespace WpfApp1.ViewModel
                                 Publisher = 0;
                                 Category = "";
                                 Description = "";
-                                //Rate = 0;
                                 DodawanieDostepne = true;
                                 EdycjaDostepna = false;
                             }
@@ -229,6 +213,9 @@ namespace WpfApp1.ViewModel
                 return edytuj;
             }
         }
+
+
+        
 
     }
 }
