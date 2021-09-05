@@ -37,6 +37,8 @@ namespace WpfApp1.ViewModel
         }
 
 
+       
+
         public Book BiezacaKsiazka { get; set; }
 
 

@@ -28,7 +28,7 @@
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="10*"/>
                     </Grid.ColumnDefinitions>-->
-                    
+
 
                     <ComboBox Margin="0,5,9,360" SelectedIndex="0" x:Name="cb">
                         <ComboBoxItem x:Name="wszystkie_ksiazki">
@@ -132,8 +132,8 @@
                         </ListView.View>
 
                     </ListView>
-                    
-                    
+
+
                     <!--<ListBox x:Name="ksiazki_lista" Grid.Column="0" ItemsSource="{Binding Books}" IsSynchronizedWithCurrentItem="true" Margin="0,40,0,0">
                 
                     </ListBox>-->
@@ -152,9 +152,10 @@
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Column="0" Margin="5">
                         <TextBlock Text="Tytuł:"/>
-                        <TextBox x:Name="title"  Text="{Binding DodajKsiazkeVM.Title}" Margin="0,10,0,0"/>
-                        <TextBlock Text="Data wydania:"/>
-                        <Grid Margin="0,10,0,0">
+                        <TextBox x:Name="title"  Text="{Binding TabDodajKsiazkiVM.Title}" Margin="0,7,-0.4,5"/>
+                        <TextBlock Text="Data wydania: (yyyy-mm-dd)" Margin="0,10,0,0"/>
+                        <TextBox Text="{Binding TabDodajKsiazkiVM.ReleaseDate}" Margin="0,5,-0.4,0" Height="22" />
+                        <!--<Grid Margin="0,10,0,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*"/>
                                 <ColumnDefinition Width="0.4*"/>
@@ -165,7 +166,7 @@
                             </Grid.ColumnDefinitions>
 
                             <ComboBox Grid.Column="0" x:Name="cb_dzien">
-
+                      
                             </ComboBox>
                             <TextBlock Grid.Column="1" Text="-" HorizontalAlignment="Center" />
                             <ComboBox Grid.Column="2" x:Name="cb_miesiac">
@@ -175,18 +176,65 @@
                             <ComboBox Grid.Column="4" x:Name="cb_rok" Margin="3.4,0,35.8,0" />
                             <TextBox Grid.Column="4" Text="{Binding DodajKsiazkeVM.ReleaseDate}" Grid.ColumnSpan="2" Margin="119.4,0,-0.4,0" />
 
-                        </Grid>
+                        </Grid>-->
                         <StackPanel Margin="0,10,0,0">
+
                             <TextBlock Text="Wydawnictwo:"/>
-                            <TextBox x:Name="publisher"  Text="{Binding DodajKsiazkeVM.Publisher}" Margin="0,10,0,0"/>
-                            <TextBlock Text="Kategoria/Gatunek:"/>
-                            <TextBox x:Name="category"  Text="{Binding DodajKsiazkeVM.Category}" Margin="0,10,0,0"/>
-                            <TextBlock Text="Opis:"/>
-                            <TextBox x:Name="description"  Text="{Binding DodajKsiazkeVM.Description}" Margin="0,10,-0.4,0" Height="109"/>
+
+
+                            <!--<TextBox x:Name="publisher"  Text="{Binding DodajKsiazkeVM.Publisher}" Margin="0,10,0,0"/>-->
+                            <DockPanel>
+                                <ComboBox Grid.Column="2" x:Name="cb_publisher" SelectedItem="{Binding TabDodajKsiazkiVM.Publisher}" Width="53" Margin="0,5,0,0"></ComboBox>
+                                <TextBlock Text="Zobacz wydawnictwa" ToolTip="1.) Sonia Draga 2.) Czwarta Strona 3.) Debit 4.) Filia 5.) Tandem 6.) Prószyński i S-ka" Width="116" Margin="0,5,0,0"/>
+                            </DockPanel>
+                            <TextBlock Text="Kategoria/Gatunek:" Margin="0,10,0,0"/>
+                            <TextBox x:Name="category"  Text="{Binding TabDodajKsiazkiVM.Category}" Margin="0,10,0,0"/>
+                            <TextBlock Text="Opis:" Margin="0,10,0,0"/>
+                            <TextBox x:Name="description"  Text="{Binding TabDodajKsiazkiVM.Description}" Margin="0,10,-0.4,0" Height="95"/>
                         </StackPanel>
+                        <DockPanel Height="47" Margin="65,0,-0.4,0">
+                            <Button x:Name="button_Dodaj" Grid.Column="0" Content="Dodaj"
+                                    
+                                    Command="{Binding TabDodajKsiazkiVM.Dodaj}"
+                                    IsEnabled="{Binding TabDodajKsiazkiVM.DodawanieDostepne, Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="1.881,0.51" Width="50" Height="25"
+                             />
+                            <Button x:Name="button_Edytuj" Grid.Column="1" Content="Edytuj" 
+                                    
+                                    Command="{Binding TabDodajKsiazkiVM.Edytuj}"
+                                    IsEnabled="{Binding TabDodajKsiazkiVM.EdycjaDostepna, Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="50" Height="25"
+                             />
+                        </DockPanel>
 
 
                     </StackPanel>
+
+                    <DataGrid 
+                        x:Name="dg_ksiazki"
+                        AutoGenerateColumns="False"
+                        
+                        AlternatingRowBackground="Lavender"
+                        GridLinesVisibility="None"
+                        IsReadOnly="True"
+                        SelectedItem="{Binding TabDodajKsiazkiVM.BiezacaKsiazka}" 
+                        ItemsSource="{Binding TabDodajKsiazkiVM.Ksiazki}"
+                        SelectedIndex="{Binding TabDodajKsiazkiVM.IdZaznaczenia, Mode=TwoWay}" Margin="315,0,0,0" Grid.ColumnSpan="2">
+                        
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Tytuł" Binding="{Binding Title}"/>
+                            <DataGridTextColumn Header="Data wydania" Binding="{Binding ReleaseDate }"/>
+                            <DataGridTextColumn Header="Wydawnictwo" Binding="{Binding Publisher}"/>
+                            <DataGridTextColumn Header="Kategoria" Binding="{Binding Category}"/>
+                            <DataGridTextColumn Header="Wydawnictwo" Binding="{Binding Description}"/>
+                            <DataGridTextColumn Header="Kategoria" Binding="{Binding Rate}"/>
+                        </DataGrid.Columns>
+
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding TabDodajKsiazkiVM.LadujFormularz}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+
+                    </DataGrid>
                 </Grid>
             </TabItem>
         </TabControl>

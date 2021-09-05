@@ -16,7 +16,7 @@ namespace WpfApp1.ViewModel
         private Model model = null;
 
         private string title, releaseDate, category, description;
-        private int publisher, idZaznaczenia=-1;
+        private int publisher, idZaznaczenia = -1;
        // private double rate;
         private bool dodawanieDostepne = true;
         private bool edycjaDostepna = false;
@@ -89,6 +89,7 @@ namespace WpfApp1.ViewModel
         //    }
         //}
 
+       
         public int IdZaznaczenia
         {
             get { return idZaznaczenia; }
@@ -98,6 +99,7 @@ namespace WpfApp1.ViewModel
                 onPropertyChanged(nameof(IdZaznaczenia));
             }
         }
+
         public ObservableCollection<Book> Ksiazki { get; set; }
 
         public bool DodawanieDostepne
