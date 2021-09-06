@@ -72,5 +72,7 @@ namespace WpfApp1.Model
             return false;
         }
 
+        public string Title
+
     }
 }

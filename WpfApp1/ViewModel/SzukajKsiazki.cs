@@ -11,6 +11,7 @@ namespace WpfApp1.ViewModel
     using WpfApp1.DAL.Entities;
     using System.Collections.ObjectModel;
     using System.Windows.Input;
+    using System.ComponentModel;
 
     class SzukajKsiazki : BaseViewModel
     {
@@ -21,8 +22,10 @@ namespace WpfApp1.ViewModel
         public SzukajKsiazki(Model model)
         {
             this.model = model;
-
+            
         }
+
+        public Book Ksiazka { get; set; }
 
         public string Title
         {
@@ -73,19 +76,38 @@ namespace WpfApp1.ViewModel
             }
         }
 
+        
+
+        //acces do pola z info zwrotnym
+        private string info = " ";
+        public string Info
+        {
+            get { return info; }
+            set
+            {
+                info = value;
+                onPropertyChanged(nameof(Info));
+            }
+        }
+
+
+
         private ICommand szukaj;
 
         public ICommand Szukaj
         {
             get
             {
-                *tutaj wyszukanie w konkretnej kolumnie
-                if(znajdzie )
-                    too wyswietla dane
-                if nie
-                    napis "brak takiej ksiazki w bazie"
+                return szukaj ?? (szukaj = new RelayCommand(
+                    p => {
+                for(tbKsiazki.Text == zz kolumny){
+
+                }))
+                
 
             }
         }
+
+        
     }
 }
