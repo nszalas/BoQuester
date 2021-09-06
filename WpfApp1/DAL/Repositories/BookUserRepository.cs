@@ -32,7 +32,23 @@ namespace WpfApp1.DAL.Repositories
             return ownerships;
         }
 
-        public static bool AddOwnershipToDataBase(BookUser ownership)
+        public static List<Book> getListWantToRead(sbyte? user_id)
+        {
+            List<Book> ownerships = new List<Book>();
+            using (var connection = DBConnection.Instance.Connection)
+            {
+                MySqlCommand command = new MySqlCommand($"SELECT book.book_id, book.title, book.release_date, book.publisher, book.category, book.description, book.rate FROM booksusers LEFT JOIN book ON book.book_id = booksusers.book_id WHERE booksusers.want_to_read=1 AND booksusers.user_id=@user_id", connection);
+                command.Parameters.AddWithValue("@user_id", user_id);
+                connection.Open();
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                    ownerships.Add(new Book(reader));
+                connection.Close();
+            }
+            return ownerships;
+        }
+
+            public static bool AddOwnershipToDataBase(BookUser ownership)
         {
             bool state = false;
             using (var connection = DBConnection.Instance.Connection)
@@ -52,7 +68,7 @@ namespace WpfApp1.DAL.Repositories
             bool state = false;
             using (var connection = DBConnection.Instance.Connection)
             {
-                string EDIT_OWNERSHIP = $"UPDATE booksusers SET use_id='{ownership.UserId}', book_id='{ownership.BookId}', " +
+                string EDIT_OWNERSHIP = $"UPDATE booksusers SET user_id='{ownership.UserId}', book_id='{ownership.BookId}', " +
                     $"is_read={ownership.IsRead}, want_to_read='{ownership.WantToRead}', rate='{ownership.Rate}' WHERE books_users_id={ownershipId}";
 
                 MySqlCommand command = new MySqlCommand(EDIT_OWNERSHIP, connection);
@@ -65,6 +81,7 @@ namespace WpfApp1.DAL.Repositories
             return state;
         }
 
+       
         #endregion
     }
 }

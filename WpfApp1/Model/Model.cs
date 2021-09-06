@@ -14,7 +14,7 @@ namespace WpfApp1.Model
     {
         public ObservableCollection<User> Users { get; set; } = new ObservableCollection<User>();
         public ObservableCollection<Book> Ksiazki { get; set; } = new ObservableCollection<Book>();
-        public ObservableCollection<Book> DoPrzeczytania { get; set; } = new ObservableCollection<Book>();
+        public static ObservableCollection<Book> DoPrzeczytania { get; set; } = new ObservableCollection<Book>();
         public ObservableCollection<Book> Przeczytane { get; set; } = new ObservableCollection<Book>();
       
 
@@ -27,9 +27,11 @@ namespace WpfApp1.Model
             var ksiazki = BookRepository.getBooks();
             foreach (var book in ksiazki)
                 Ksiazki.Add(book);
+            
+            
         }
 
-
+       
         private Book ZnajdzKsiazkePoId(sbyte id)
         {
             foreach (var book in Ksiazki)
@@ -83,11 +85,22 @@ namespace WpfApp1.Model
             return false;
         }
 
-        public void DodajKsiazkeDoPrzeczytania(Book ksiazka, sbyte idKsiazki)
+        public void DodajKsiazkeDoPrzeczytania(Book ksiazka)
         {
             DoPrzeczytania.Add(ksiazka);
-
+            BookUser user = new BookUser((sbyte)Session.CurrentUser.UserId, (sbyte)ksiazka.Id, false, true, 0);
+            BookUserRepository.AddOwnershipToDataBase(user);
         }
 
     }
 }
+
+//public BookUser(sbyte userId, sbyte bookId, bool isRead, bool wantToRead, int rate = 0)
+//{
+//    BooksUsersId = null;
+//    UserId = userId;
+//    BookId = bookId;
+//    IsRead = isRead;
+//    WantToRead = wantToRead;
+//    Rate = rate;
+//}

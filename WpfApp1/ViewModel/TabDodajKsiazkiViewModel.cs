@@ -27,7 +27,7 @@ namespace WpfApp1.ViewModel
         }
 
 
-        public Book BiezacaKsiazka { get; set; }
+        public static Book BiezacaKsiazka { get; set; } 
 
         public string Title
         {
@@ -226,7 +226,7 @@ namespace WpfApp1.ViewModel
                         arg =>
                         {
 
-                            model.DodajKsiazkeDoPrzeczytania(new Book(Title, ReleaseDate, (sbyte)Publisher, Category, Description), (sbyte)BiezacaKsiazka.Id);
+                            model.DodajKsiazkeDoPrzeczytania(TabListaViewModel.BiezacaKsiazka);  
                             IdZaznaczenia = -1;
                         }
                         ,

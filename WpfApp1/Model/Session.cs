@@ -12,7 +12,7 @@ namespace WpfApp1.Model
 
     class Session
     {
-        private User currentUser;
+        private static User currentUser;
         private bool isAuthenticated;
 
         public bool IsAuthenticated
@@ -20,7 +20,7 @@ namespace WpfApp1.Model
             get { return isAuthenticated; }
         }
 
-        public User CurrentUser
+        public static User CurrentUser
         {
             get { return currentUser; }
         }
@@ -29,7 +29,11 @@ namespace WpfApp1.Model
         private Session(string username, string password)
         {
             currentUser = UserRepository.getUser(username);
-            isAuthenticated = UserAuthentication.Authenticate(username, password);          
+            isAuthenticated = UserAuthentication.Authenticate(username, password);
+
+            var toread = BookUserRepository.getListWantToRead(currentUser.UserId);
+            foreach (var book in toread)
+                Model.DoPrzeczytania.Add(book);
         }
 
         public static Session GetOrCreateSession(string username, string password)

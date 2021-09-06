@@ -48,7 +48,7 @@ namespace WpfApp1.DAL.Entities
 
         public string ToInsert()
         {
-            return $"('{UserId}', '{BookId}', {IsRead}, '{WantToRead}', '{Rate}')";
+            return $"('{UserId}', '{BookId}', {IsRead}, {WantToRead}, '{Rate}')";
         }
 
 

@@ -16,7 +16,7 @@ namespace WpfApp1.ViewModel
     {
         private Model model = null;
         private ObservableCollection<Book> ksiazki = null;
-        private ObservableCollection<Book> doPrzeczytania = null;
+        private ObservableCollection<Book> doPrzeczytania = Model.DoPrzeczytania;
         private ObservableCollection<Book> przeczytane = null;
 
         private int indeksZaznaczonejKsiazki = -1;
@@ -41,7 +41,7 @@ namespace WpfApp1.ViewModel
 
        
 
-        public Book BiezacaKsiazka { get; set; }
+        public static Book BiezacaKsiazka { get; set; }
 
 
         public ObservableCollection<Book> Ksiazki

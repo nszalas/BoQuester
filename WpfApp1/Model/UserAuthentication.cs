@@ -35,6 +35,7 @@ namespace WpfApp1.Model
             if (dataBasePassword == password)
                 isAuthenticated = true;
 
+
             return isAuthenticated;
         }
     }
