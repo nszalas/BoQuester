@@ -12,30 +12,32 @@ namespace WpfApp1.ViewModel
     using System.Collections.ObjectModel;
     using System.Windows.Input;
     using System.ComponentModel;
+    using System.Diagnostics;
 
     class SzukajKsiazki : BaseViewModel
     {
         private Model model = null;
 
-        private string title, releaseDate, category, description;
+        private string title1, releaseDate, category, description;
         private int publisher;
         public SzukajKsiazki(Model model)
         {
             this.model = model;
-            
+            Info = this.Info;
         }
 
         public Book Ksiazka { get; set; }
 
-        public string Title
+        public string Title1
         {
-            get { return title; }
+            get { return title1; }
             set
             {
-                title = value;
-                onPropertyChanged(nameof(Title));
+                title1 = value;
+                onPropertyChanged(nameof(Title1));
             }
         }
+
         public string ReleaseDate
         {
             get { return releaseDate; }
@@ -79,8 +81,8 @@ namespace WpfApp1.ViewModel
         
 
         //acces do pola z info zwrotnym
-        private string info = " ";
-        public string Info
+        private ObservableCollection<Book> info;
+        public ObservableCollection<Book> Info
         {
             get { return info; }
             set
@@ -90,16 +92,8 @@ namespace WpfApp1.ViewModel
             }
         }
 
-        private string tytul = "";
-        public string Tytul1
-        {
-            get { return tytul; }
-            set
-            {
-                tytul = value;
-                onPropertyChanged(nameof(Tytul1));
-            }
-        }
+        
+        
 
         
         private ICommand szukaj;
@@ -111,15 +105,9 @@ namespace WpfApp1.ViewModel
                 return szukaj ?? (szukaj = new RelayCommand(
                     p =>
                     {
-                        if (model.ZnajdzKsiazkePoTytule(Tytul1) == null)
-                        {
-                            Info = "Brak";
-                        }
-                        else
-                        {
-                            Info = model.ZnajdzKsiazkePoTytule(Tytul1).ToString();
-                        };
-
+                        Debug.WriteLine(Title1);
+                        Info = model.ZnajdzKsiazkePoTytule(Title1);
+                        
                     }, p => true));
                 
 

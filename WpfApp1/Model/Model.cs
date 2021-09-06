@@ -9,6 +9,7 @@ namespace WpfApp1.Model
     using DAL.Entities;
     using DAL.Repositories;
     using System.Collections.ObjectModel;
+    using System.Diagnostics;
 
     class Model
     {
@@ -16,6 +17,8 @@ namespace WpfApp1.Model
         public ObservableCollection<Book> Ksiazki { get; set; } = new ObservableCollection<Book>();
         public static ObservableCollection<Book> DoPrzeczytania { get; set; } = new ObservableCollection<Book>();
         public static ObservableCollection<Book> Przeczytane { get; set; } = new ObservableCollection<Book>();
+
+        public ObservableCollection<Book> Znalezione { get; set; } = new ObservableCollection<Book>();
       
 
         // get data from database to collection
@@ -41,14 +44,21 @@ namespace WpfApp1.Model
             }
             return null;
         }
-        public Book ZnajdzKsiazkePoTytule(string tytul)
+        
+
+        public ObservableCollection<Book> ZnajdzKsiazkePoTytule(string tytul)
         {
+
+
             foreach (var book in Ksiazki)
             {
-                if (book.Title == tytul)
-                    return book;
+                Debug.WriteLine(book.Title);
+                string i = book.Title;
+                if(i.Contains(tytul))
+                    Znalezione.Add(book);
+
             }
-            return null;
+            return Znalezione;
         }
 
         
