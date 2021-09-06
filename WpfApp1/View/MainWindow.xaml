@@ -130,11 +130,7 @@
                                         Command="{Binding TabDodajKsiazkiVM.Dodaj_doPrzeczytania}"
                                         HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="1.881,0.51" Width="199" Height="22" Margin="80,10,0,0"
                                  />
-                            <Button x:Name="Dodaj_Przeczytane" Content="Oznacz jako przeczytane"
-                                    
-                                        Command="{Binding TabDodajKsiazkiVM.Dodaj_Przeczytane}"
-                                        HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="1.881,0.51" Width="199" Height="22" Margin="30,10,0,0"
-                                 />
+
 
                         </DockPanel>
 
@@ -144,10 +140,7 @@
                     </ListBox>-->
                 </Grid>
             </TabItem>
-
-            <TabItem x:Name="Autorzy" Header="Autorzy">
-
-            </TabItem>
+            
             <TabItem x:Name="Szukaj" Header="Szukaj książki">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -428,12 +421,21 @@
                             </ListView.View>
 
                         </ListView>
-                        <Button Grid.Column="1" Content="Usuń" 
+                        <DockPanel>
+                            <Button x:Name="Dodaj_Przeczytane" Content="Oznacz jako przeczytane"
+                                    
+                                        Command="{Binding TabDodajKsiazkiVM.Dodaj_Przeczytane}"
+                                        HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="1.881,0.51" Width="199" Height="22" Margin="100,30,0,0"
+                                 />
+                            <Button Grid.Column="1" Content="Usuń" 
                                     
                                     Command="{Binding TabDodajKsiazkiVM.Usun_ksiazke}" CommandParameter="usun_do_przeczytania"
-                                    HorizontalAlignment="Center" VerticalAlignment="Center" Width="50" Height="25"
+                                    HorizontalAlignment="Center" VerticalAlignment="Center" Width="199" Height="22" Margin="0,30,0,0"
                              />
+                        </DockPanel>
                     </StackPanel>
+                    
+                        
 
                     <!--<ListBox x:Name="ksiazki_lista" Grid.Column="0" ItemsSource="{Binding Books}" IsSynchronizedWithCurrentItem="true" Margin="0,40,0,0">
                 
@@ -536,7 +538,7 @@
                         <Button Grid.Column="1" Content="Usuń" 
                                     
                                     Command="{Binding TabDodajKsiazkiVM.Usun_ksiazke}" CommandParameter="usun_przeczytana"
-                                    HorizontalAlignment="Center" VerticalAlignment="Center" Width="50" Height="25"
+                                    HorizontalAlignment="Center" VerticalAlignment="Center" Width="199" Height="22" Margin="0,30,0,0"
                              />
 
                     </StackPanel>
