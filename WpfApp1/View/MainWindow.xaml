@@ -25,7 +25,7 @@
                         <ColumnDefinition Width="709*"/>
                     </Grid.ColumnDefinitions>
 
-                    <ComboBox Margin="0,5,9,360" SelectedIndex="0" x:Name="cb" Grid.ColumnSpan="2">
+                    <!--<ComboBox Margin="0,5,9,360" SelectedIndex="0" x:Name="cb" Grid.ColumnSpan="2">
                         <ComboBoxItem x:Name="wszystkie_ksiazki">
                             <TextBlock Text="Wszystkie książki"/>
                         </ComboBoxItem>
@@ -35,13 +35,13 @@
                         <ComboBoxItem x:Name="przeczytane">
                             <TextBlock Text="Przeczytane książki"/>
                         </ComboBoxItem>
-                    </ComboBox>
+                    </ComboBox>-->
                     <!-- LISTA KSIĄŻEK -->
                     <StackPanel Grid.ColumnSpan="2">
                         <ListView x:Name="ksiazki"  
                                   SelectedItem="{Binding TabListaVM.BiezacaKsiazka}" 
                                   ItemsSource="{Binding TabListaVM.Ksiazki}"
-                                  SelectedIndex="{Binding TabListaVM.IndeksZaznaczonejKsiazki, Mode=TwoWay}" Margin="0,40,0,0" Height="315">
+                                  SelectedIndex="{Binding TabListaVM.IndeksZaznaczonejKsiazki, Mode=TwoWay}" Margin="0,5,0,0" Height="387">
 
 
                             <ListView.View>
