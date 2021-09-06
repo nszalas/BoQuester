@@ -107,14 +107,19 @@ namespace WpfApp1.ViewModel
                 return szukaj ?? (szukaj = new RelayCommand(
                     p =>
                     {
+                        Info = model.ZnajdzKsiazkePoTytule("la");
+                        Info.Clear();
                         Debug.WriteLine(Title1);
                         Info = model.ZnajdzKsiazkePoTytule(Title1);
-                        
+
+
                     }, p => true));
                 
 
             }
         }
+
+        
 
         
     }
