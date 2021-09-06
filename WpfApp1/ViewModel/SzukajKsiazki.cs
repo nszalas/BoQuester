@@ -90,8 +90,18 @@ namespace WpfApp1.ViewModel
             }
         }
 
+        private string tytul = "";
+        public string Tytul1
+        {
+            get { return tytul; }
+            set
+            {
+                tytul = value;
+                onPropertyChanged(nameof(Tytul1));
+            }
+        }
 
-
+        
         private ICommand szukaj;
 
         public ICommand Szukaj
@@ -99,10 +109,18 @@ namespace WpfApp1.ViewModel
             get
             {
                 return szukaj ?? (szukaj = new RelayCommand(
-                    p => {
-                for(tbKsiazki.Text == zz kolumny){
+                    p =>
+                    {
+                        if (model.ZnajdzKsiazkePoTytule(Tytul1) == null)
+                        {
+                            Info = "Brak";
+                        }
+                        else
+                        {
+                            Info = model.ZnajdzKsiazkePoTytule(Tytul1).ToString();
+                        };
 
-                }))
+                    }, p => true));
                 
 
             }

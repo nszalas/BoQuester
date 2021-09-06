@@ -39,6 +39,17 @@ namespace WpfApp1.Model
             }
             return null;
         }
+        public Book ZnajdzKsiazkePoTytule(string tytul)
+        {
+            foreach (var book in Ksiazki)
+            {
+                if (book.Title == tytul)
+                    return book;
+            }
+            return null;
+        }
+
+        
 
         public bool CzyKsiazkaJestJuzWRepozytorium(Book ksiazka) => Ksiazki.Contains(ksiazka);
 
@@ -72,7 +83,7 @@ namespace WpfApp1.Model
             return false;
         }
 
-        public string Title
+        
 
     }
 }
