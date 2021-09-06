@@ -33,6 +33,7 @@ namespace WpfApp1.ViewModel
             get { return title1; }
             set
             {
+                Debug.WriteLine(value);
                 title1 = value;
                 onPropertyChanged(nameof(Title1));
             }
@@ -80,7 +81,7 @@ namespace WpfApp1.ViewModel
 
         
 
-        //acces do pola z info zwrotnym
+        //access do pola z info zwrotnym
         private ObservableCollection<Book> info;
         public ObservableCollection<Book> Info
         {
@@ -93,9 +94,10 @@ namespace WpfApp1.ViewModel
         }
 
         
-        
 
         
+
+
         private ICommand szukaj;
 
         public ICommand Szukaj

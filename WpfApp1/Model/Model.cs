@@ -44,7 +44,9 @@ namespace WpfApp1.Model
             }
             return null;
         }
+
         
+        public ObservableCollection<Book> Ksiazki1 { get; set; } = new ObservableCollection<Book>();
 
         public ObservableCollection<Book> ZnajdzKsiazkePoTytule(string tytul)
         {
@@ -53,15 +55,15 @@ namespace WpfApp1.Model
             foreach (var book in Ksiazki)
             {
                 Debug.WriteLine(book.Title);
+                Debug.WriteLine(tytul);
                 string i = book.Title;
-                if(i.Contains(tytul))
+                if (i.Contains(tytul))
                     Znalezione.Add(book);
 
             }
             return Znalezione;
         }
 
-        
 
         public bool CzyKsiazkaJestJuzWRepozytorium(Book ksiazka) => Ksiazki.Contains(ksiazka);
 
