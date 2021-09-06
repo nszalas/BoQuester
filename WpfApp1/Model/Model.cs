@@ -83,7 +83,11 @@ namespace WpfApp1.Model
             return false;
         }
 
-        
+        public void DodajKsiazkeDoPrzeczytania(Book ksiazka, sbyte idKsiazki)
+        {
+            DoPrzeczytania.Add(ksiazka);
+
+        }
 
     }
 }

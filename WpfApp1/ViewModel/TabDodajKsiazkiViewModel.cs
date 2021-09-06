@@ -214,8 +214,31 @@ namespace WpfApp1.ViewModel
             }
         }
 
+        private ICommand dodaj_doPrzeczytania = null;
 
-        
+        public ICommand Dodaj_doPrzeczytania
+        {
+
+            get
+            {
+                if (dodaj_doPrzeczytania == null)
+                    dodaj_doPrzeczytania = new RelayCommand(
+                        arg =>
+                        {
+
+                            model.DodajKsiazkeDoPrzeczytania(new Book(Title, ReleaseDate, (sbyte)Publisher, Category, Description), (sbyte)BiezacaKsiazka.Id);
+                            IdZaznaczenia = -1;
+                        }
+                        ,
+                        arg => true
+                        );
+
+
+                return dodaj_doPrzeczytania;
+            }
+
+        }
+
 
     }
 }

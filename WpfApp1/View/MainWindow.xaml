@@ -143,9 +143,9 @@
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="3*"/>
                     </Grid.RowDefinitions>
-                    <TextBlock x:Name="nKsiazki" Grid.Row="0" Grid.Column="0" Background="Gray" Text="{Binding Tytul1}"/>
+                    <TextBox x:Name="nKsiazki" Grid.Row="0" Grid.Column="0" Background="Gray" Text="{Binding Tytul1}"/>
                     <Button x:Name="bKsiazki" Grid.Column="1" Grid.Row="0" Content="Szukaj" Command="{Binding SzukajKsiazki.Szukaj}"/>
-                    <TextBox x:Name="tbKsiazki" Text="{Binding SzukajKsiazki.Info}" Grid.Row="1" Grid.ColumnSpan="2" Background="Green"/>
+                    <TextBlock x:Name="tbKsiazki" Text="{Binding SzukajKsiazki.Info}" Grid.Row="1" Grid.ColumnSpan="2" Background="Green"/>
                 </Grid>
 
             </TabItem>
@@ -229,6 +229,107 @@
                         </i:Interaction.Triggers>
 
                     </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="ksiazki_doPrzeczytania" Header="Książki do przeczytania">
+                <Grid>
+
+
+                    <!-- LISTA KSIĄŻEK -->
+                    <StackPanel>
+
+
+                        <ListView x:Name="ksiazki2"  
+                                  SelectedItem="{Binding TabListaVM.BiezacaKsiazka}" 
+                                  ItemsSource="{Binding TabListaVM.DoPrzeczytania}"
+                                  SelectedIndex="{Binding TabListaVM.IndeksZaznaczonejKsiazki, Mode=TwoWay}" Margin="0,5,0,0" Height="315">
+
+
+                            <ListView.View>
+                                <GridView>
+                                    <GridView.Columns>
+                                        <GridViewColumn Width="150" x:Name="kolumna_Tytull">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Title}" FontSize="14"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                            <GridViewColumn.Header>
+                                                <TextBlock Text="Tytuł" Background="AliceBlue" Width="{Binding ActualWidth, ElementName=kolumna_Tytul}" >
+                                                 <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="MouseDown">
+                                                        <i:InvokeCommandAction Command="{Binding TabListaVM.ZaladujWszystkieKsiazki}"/>
+                                                    </i:EventTrigger>
+                                                  </i:Interaction.Triggers>
+                                                </TextBlock>
+                                            </GridViewColumn.Header>
+                                        </GridViewColumn>
+
+                                        <GridViewColumn>
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding ReleaseDate}" />
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                            <GridViewColumn.Header>
+                                                <TextBlock Text="Data wydania"></TextBlock>
+                                            </GridViewColumn.Header>
+                                        </GridViewColumn>
+
+                                        <GridViewColumn >
+                                            <GridViewColumn.CellTemplate >
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Publisher}"  HorizontalAlignment="Stretch"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                            <GridViewColumn.Header>
+                                                <TextBlock Text="Wydawnictwo"></TextBlock>
+                                            </GridViewColumn.Header>
+                                        </GridViewColumn>
+
+                                        <GridViewColumn Width="150">
+                                            <GridViewColumn.CellTemplate >
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Category}"  HorizontalAlignment="Stretch"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                            <GridViewColumn.Header>
+                                                <TextBlock Text="Kategoria"></TextBlock>
+                                            </GridViewColumn.Header>
+                                        </GridViewColumn>
+
+                                        <GridViewColumn Width="280">
+                                            <GridViewColumn.CellTemplate >
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Description}"  HorizontalAlignment="Stretch"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                            <GridViewColumn.Header>
+                                                <TextBlock Text="Opis"></TextBlock>
+                                            </GridViewColumn.Header>
+                                        </GridViewColumn>
+
+                                        <GridViewColumn >
+                                            <GridViewColumn.CellTemplate >
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Rate}"  HorizontalAlignment="Stretch"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                            <GridViewColumn.Header>
+                                                <TextBlock Text="Ocena"></TextBlock>
+                                            </GridViewColumn.Header>
+                                        </GridViewColumn>
+                                    </GridView.Columns>
+                                </GridView>
+                            </ListView.View>
+
+                        </ListView>
+
+                    </StackPanel>
+
+                    <!--<ListBox x:Name="ksiazki_lista" Grid.Column="0" ItemsSource="{Binding Books}" IsSynchronizedWithCurrentItem="true" Margin="0,40,0,0">
+                
+                    </ListBox>-->
                 </Grid>
             </TabItem>
         </TabControl>

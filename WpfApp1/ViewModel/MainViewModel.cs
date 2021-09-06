@@ -19,19 +19,7 @@ namespace WpfApp1.ViewModel
         public TabDodajKsiazkiViewModel TabDodajKsiazkiVM { get; set; }
         public SzukajKsiazki SzukajKsiazki { get; set; }
 
-        //private List<Book> books;
 
-        //public event PropertyChangedEventHandler PropertyChanged;
-
-        //public List<Book> Books
-        //{
-        //    get { return books; }
-        //    set
-        //    {
-        //        books = value;
-        //        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Books)));
-        //    }
-        //}
 
         public MainViewModel()
         {
