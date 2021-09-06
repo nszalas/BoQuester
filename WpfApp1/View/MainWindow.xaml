@@ -123,6 +123,7 @@
                             </ListView.View>
 
                         </ListView>
+
                         <DockPanel RenderTransformOrigin="0.466,0.573">
                             <Button x:Name="Dodaj_doPrzeczytania" Content="Dodaj do listy 'Do przeczytania'"
                                     
@@ -134,8 +135,9 @@
                                         Command="{Binding TabDodajKsiazkiVM.Dodaj_Przeczytane}"
                                         HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="1.881,0.51" Width="199" Height="22" Margin="30,10,0,0"
                                  />
+
                         </DockPanel>
-                       
+
                     </StackPanel>
                     <!--<ListBox x:Name="ksiazki_lista" Grid.Column="0" ItemsSource="{Binding Books}" IsSynchronizedWithCurrentItem="true" Margin="0,40,0,0">
                 
@@ -158,7 +160,7 @@
                     </Grid.RowDefinitions>
                     <TextBox x:Name="nKsiazki" Grid.Row="0" Grid.Column="0" Background="Gray" Text="{Binding SzukajKsiazki.Title1, UpdateSourceTrigger=PropertyChanged}"/>
                     <Button x:Name="bKsiazki" Grid.Column="1" Grid.Row="0" Content="Szukaj" Command="{Binding SzukajKsiazki.Szukaj}"/>
-                    
+
                     <ListView x:Name="lbksiazki"   
                                   ItemsSource="{Binding SzukajKsiazki.Info}" Grid.Row="1" Grid.ColumnSpan="2" Background="Green">
 
@@ -331,10 +333,14 @@
             </TabItem>
             <TabItem x:Name="ksiazki_doPrzeczytania" Header="Książki do przeczytania">
                 <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="112*"/>
+                        <ColumnDefinition Width="85*"/>
+                    </Grid.ColumnDefinitions>
 
 
                     <!-- LISTA KSIĄŻEK -->
-                    <StackPanel>
+                    <StackPanel Grid.ColumnSpan="2">
 
 
                         <ListView x:Name="ksiazki2"  
@@ -422,7 +428,11 @@
                             </ListView.View>
 
                         </ListView>
-
+                        <Button Grid.Column="1" Content="Usuń" 
+                                    
+                                    Command="{Binding TabDodajKsiazkiVM.Usun_ksiazke}" CommandParameter="usun_do_przeczytania"
+                                    HorizontalAlignment="Center" VerticalAlignment="Center" Width="50" Height="25"
+                             />
                     </StackPanel>
 
                     <!--<ListBox x:Name="ksiazki_lista" Grid.Column="0" ItemsSource="{Binding Books}" IsSynchronizedWithCurrentItem="true" Margin="0,40,0,0">
@@ -523,6 +533,11 @@
                             </ListView.View>
 
                         </ListView>
+                        <Button Grid.Column="1" Content="Usuń" 
+                                    
+                                    Command="{Binding TabDodajKsiazkiVM.Usun_ksiazke}" CommandParameter="usun_przeczytana"
+                                    HorizontalAlignment="Center" VerticalAlignment="Center" Width="50" Height="25"
+                             />
 
                     </StackPanel>
 

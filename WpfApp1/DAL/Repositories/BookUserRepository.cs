@@ -79,13 +79,13 @@ namespace WpfApp1.DAL.Repositories
             return state;
         }
 
-        public static bool EditBookInDataBase(BookUser ownership, sbyte ownershipId)
+        public static bool AddToAlreadyRead(Book ownership, sbyte user_id)
         {
             bool state = false;
             using (var connection = DBConnection.Instance.Connection)
             {
-                string EDIT_OWNERSHIP = $"UPDATE booksusers SET user_id='{ownership.UserId}', book_id='{ownership.BookId}', " +
-                    $"is_read={ownership.IsRead}, want_to_read='{ownership.WantToRead}', rate='{ownership.Rate}' WHERE books_users_id={ownershipId}";
+                string EDIT_OWNERSHIP = $"UPDATE booksusers SET is_read=1, want_to_read=0 WHERE user_id={user_id} AND book_id={ownership.Id}";
+                
 
                 MySqlCommand command = new MySqlCommand(EDIT_OWNERSHIP, connection);
                 connection.Open();
@@ -97,7 +97,25 @@ namespace WpfApp1.DAL.Repositories
             return state;
         }
 
-       
+        public static bool DeleteBook(Book ownership, sbyte user_id)
+        {
+            bool state = false;
+            using (var connection = DBConnection.Instance.Connection)
+            {
+                string EDIT_OWNERSHIP = $"DELETE FROM booksusers WHERE user_id={user_id} AND book_id={ownership.Id}";
+
+
+                MySqlCommand command = new MySqlCommand(EDIT_OWNERSHIP, connection);
+                connection.Open();
+                var n = command.ExecuteNonQuery();
+                if (n == 1) state = true;
+
+                connection.Close();
+            }
+            return state;
+        }
+
+
         #endregion
     }
 }

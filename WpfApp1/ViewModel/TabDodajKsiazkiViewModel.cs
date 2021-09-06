@@ -267,6 +267,57 @@ namespace WpfApp1.ViewModel
 
         }
 
+        private ICommand usun_ksiazke = null;
+
+        public ICommand Usun_ksiazke
+        {
+
+            get
+            {
+                if (usun_ksiazke == null)
+                    usun_ksiazke = new RelayCommand(
+                        arg =>
+                        {
+                            if (arg.ToString() == "usun_do_przeczytania") 
+                                model.UsunKsiazke(TabListaViewModel.BiezacaKsiazka, Model.DoPrzeczytania);
+                            else
+                                model.UsunKsiazke(TabListaViewModel.BiezacaKsiazka, Model.Przeczytane);
+                            IdZaznaczenia = -1;
+                        }
+                        ,
+                        arg => true
+                        );
+
+
+                return usun_ksiazke;
+            }
+
+        }
+
+        //private ICommand usun_ksiazke_przeczytana = null;
+
+        //public ICommand Usun_ksiazke_przeczytana
+        //{
+
+        //    get
+        //    {
+        //        if (usun_ksiazke_przeczytana == null)
+        //            usun_ksiazke_przeczytana = new RelayCommand(
+        //                arg =>
+        //                {
+        //                    model.UsunKsiazke(TabListaViewModel.BiezacaKsiazka, Model.DoPrzeczytania);
+        //                    IdZaznaczenia = -1;
+        //                }
+        //                ,
+        //                arg => true
+        //                );
+
+
+        //        return usun_ksiazke_przeczytana;
+        //    }
+
+        //}
+
 
     }
 }

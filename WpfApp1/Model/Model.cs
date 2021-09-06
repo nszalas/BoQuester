@@ -105,11 +105,16 @@ namespace WpfApp1.Model
 
         public void DodajKsiazkePrzeczytana(Book ksiazka)
         {
-            Przeczytane.Add(ksiazka);
-            BookUser user = new BookUser((sbyte)Session.CurrentUser.UserId, (sbyte)ksiazka.Id, true, false, 0);
-            BookUserRepository.AddOwnershipToDataBase(user);
+            Przeczytane.Add(ksiazka);     
+            BookUserRepository.AddToAlreadyRead(ksiazka, (sbyte)Session.CurrentUser.UserId);
+            DoPrzeczytania.Remove(ksiazka);
         }
 
+        public void UsunKsiazke(Book ksiazka, ObservableCollection<Book> lista)
+        {
+            lista.Remove(ksiazka);
+            BookUserRepository.DeleteBook(ksiazka, (sbyte)Session.CurrentUser.UserId);
+        }
     }
 }
 
