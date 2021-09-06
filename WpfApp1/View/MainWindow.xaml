@@ -19,7 +19,7 @@
 
         <TabControl>
             <TabItem x:Name="ksiazki_zakladka" Header="Książki">
-                <Grid>
+                <Grid Background="SkyBlue">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="79*"/>
                         <ColumnDefinition Width="709*"/>
@@ -41,7 +41,7 @@
                         <ListView x:Name="ksiazki"  
                                   SelectedItem="{Binding TabListaVM.BiezacaKsiazka}" 
                                   ItemsSource="{Binding TabListaVM.Ksiazki}"
-                                  SelectedIndex="{Binding TabListaVM.IndeksZaznaczonejKsiazki, Mode=TwoWay}" Margin="0,5,0,0" Height="345" >
+                                  SelectedIndex="{Binding TabListaVM.IndeksZaznaczonejKsiazki, Mode=TwoWay}" Margin="5" Height="345" >
 
 
                             <ListView.View>
@@ -64,27 +64,9 @@
                                             </GridViewColumn.Header>
                                         </GridViewColumn>
 
-                                        <GridViewColumn>
-                                            <GridViewColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock Text="{Binding ReleaseDate}" />
-                                                </DataTemplate>
-                                            </GridViewColumn.CellTemplate>
-                                            <GridViewColumn.Header>
-                                                <TextBlock Text="Data wydania"></TextBlock>
-                                            </GridViewColumn.Header>
-                                        </GridViewColumn>
+                                        
 
-                                        <GridViewColumn >
-                                            <GridViewColumn.CellTemplate >
-                                                <DataTemplate>
-                                                    <TextBlock Text="{Binding Publisher}"  HorizontalAlignment="Stretch"/>
-                                                </DataTemplate>
-                                            </GridViewColumn.CellTemplate>
-                                            <GridViewColumn.Header>
-                                                <TextBlock Text="Wydawnictwo"></TextBlock>
-                                            </GridViewColumn.Header>
-                                        </GridViewColumn>
+                                        
 
                                         <GridViewColumn Width="150">
                                             <GridViewColumn.CellTemplate >
@@ -105,6 +87,28 @@
                                             </GridViewColumn.CellTemplate>
                                             <GridViewColumn.Header>
                                                 <TextBlock Text="Opis"></TextBlock>
+                                            </GridViewColumn.Header>
+                                        </GridViewColumn>
+
+                                        <GridViewColumn>
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding ReleaseDate}" />
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                            <GridViewColumn.Header>
+                                                <TextBlock Text="Data wydania"></TextBlock>
+                                            </GridViewColumn.Header>
+                                        </GridViewColumn>
+
+                                        <GridViewColumn >
+                                            <GridViewColumn.CellTemplate >
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Publisher}"  HorizontalAlignment="Stretch"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                            <GridViewColumn.Header>
+                                                <TextBlock Text="Wydawnictwo"></TextBlock>
                                             </GridViewColumn.Header>
                                         </GridViewColumn>
 
@@ -142,7 +146,7 @@
             </TabItem>
             
             <TabItem x:Name="Szukaj" Header="Szukaj książki">
-                <Grid>
+                <Grid Background="PaleGreen">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="0.4*"/>
@@ -151,11 +155,11 @@
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="3*"/>
                     </Grid.RowDefinitions>
-                    <TextBox x:Name="nKsiazki" Grid.Row="0" Grid.Column="0" Background="Gray" Text="{Binding SzukajKsiazki.Title1, UpdateSourceTrigger=PropertyChanged}"/>
-                    <Button x:Name="bKsiazki" Grid.Column="1" Grid.Row="0" Content="Szukaj" Command="{Binding SzukajKsiazki.Szukaj}"/>
+                    <TextBox x:Name="nKsiazki" Grid.Row="0" Grid.Column="0" Background="WhiteSmoke" Margin="20,20,20,20" FontSize="20" Text="{Binding SzukajKsiazki.Title1, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Button x:Name="bKsiazki" Grid.Column="1" Grid.Row="0" Content="Szukaj" Margin="30" FontSize="15" FontWeight="SemiBold" Command="{Binding SzukajKsiazki.Szukaj}"/>
 
                     <ListView x:Name="lbksiazki"   
-                                  ItemsSource="{Binding SzukajKsiazki.Info}" Grid.Row="1" Grid.ColumnSpan="2" Background="Green">
+                                  ItemsSource="{Binding SzukajKsiazki.Info}" Grid.Row="1" Grid.ColumnSpan="2" Background="WhiteSmoke" Margin="25">
 
 
 
@@ -179,27 +183,7 @@
                                         </GridViewColumn.Header>
                                     </GridViewColumn>
 
-                                    <GridViewColumn>
-                                        <GridViewColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBlock Text="{Binding ReleaseDate}" />
-                                            </DataTemplate>
-                                        </GridViewColumn.CellTemplate>
-                                        <GridViewColumn.Header>
-                                            <TextBlock Text="Data wydania"></TextBlock>
-                                        </GridViewColumn.Header>
-                                    </GridViewColumn>
-
-                                    <GridViewColumn >
-                                        <GridViewColumn.CellTemplate >
-                                            <DataTemplate>
-                                                <TextBlock Text="{Binding Publisher}"  HorizontalAlignment="Stretch"/>
-                                            </DataTemplate>
-                                        </GridViewColumn.CellTemplate>
-                                        <GridViewColumn.Header>
-                                            <TextBlock Text="Wydawnictwo"></TextBlock>
-                                        </GridViewColumn.Header>
-                                    </GridViewColumn>
+                                  
 
                                     <GridViewColumn Width="150">
                                         <GridViewColumn.CellTemplate >
@@ -215,7 +199,7 @@
                                     <GridViewColumn Width="280">
                                         <GridViewColumn.CellTemplate >
                                             <DataTemplate>
-                                                <TextBlock Text="{Binding Description}"  HorizontalAlignment="Stretch"/>
+                                                <TextBlock Text="{Binding Description}"  HorizontalAlignment="Stretch" TextWrapping="Wrap"/>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                         <GridViewColumn.Header>
@@ -223,16 +207,7 @@
                                         </GridViewColumn.Header>
                                     </GridViewColumn>
 
-                                    <GridViewColumn >
-                                        <GridViewColumn.CellTemplate >
-                                            <DataTemplate>
-                                                <TextBlock Text="{Binding Rate}"  HorizontalAlignment="Stretch"/>
-                                            </DataTemplate>
-                                        </GridViewColumn.CellTemplate>
-                                        <GridViewColumn.Header>
-                                            <TextBlock Text="Ocena"></TextBlock>
-                                        </GridViewColumn.Header>
-                                    </GridViewColumn>
+                                    
                                 </GridView.Columns>
                             </GridView>
                         </ListView.View>
@@ -243,7 +218,7 @@
             </TabItem>
 
             <TabItem x:Name="Dodaj_ksiazke" Header="Dodaj książkę">
-                <Grid>
+                <Grid Background="Lavender">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="15*"/>
                         <ColumnDefinition Width="300*"/>
@@ -304,7 +279,7 @@
                         IsReadOnly="True"
                         SelectedItem="{Binding TabDodajKsiazkiVM.BiezacaKsiazka}" 
                         ItemsSource="{Binding TabDodajKsiazkiVM.Ksiazki}"
-                        SelectedIndex="{Binding TabDodajKsiazkiVM.IdZaznaczenia, Mode=TwoWay}" Margin="300.1,0,0,0" Grid.ColumnSpan="2" Grid.Column="1">
+                        SelectedIndex="{Binding TabDodajKsiazkiVM.IdZaznaczenia, Mode=TwoWay}" Margin="300.1,5,5,5" Grid.ColumnSpan="2" Grid.Column="1">
 
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Tytuł" Binding="{Binding Title}"/>
@@ -325,7 +300,7 @@
                 </Grid>
             </TabItem>
             <TabItem x:Name="ksiazki_doPrzeczytania" Header="Książki do przeczytania">
-                <Grid>
+                <Grid Background="Plum">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="112*"/>
                         <ColumnDefinition Width="85*"/>
@@ -339,7 +314,7 @@
                         <ListView x:Name="ksiazki2"  
                                   SelectedItem="{Binding TabListaVM.BiezacaKsiazka}" 
                                   ItemsSource="{Binding TabListaVM.DoPrzeczytania}"
-                                  SelectedIndex="{Binding TabListaVM.IndeksZaznaczonejKsiazki, Mode=TwoWay}" Margin="0,5,0,0" Height="315">
+                                  SelectedIndex="{Binding TabListaVM.IndeksZaznaczonejKsiazki, Mode=TwoWay}" Margin="5" Height="315">
 
 
                             <ListView.View>
@@ -443,7 +418,7 @@
                 </Grid>
             </TabItem>
             <TabItem x:Name="ksiazki_Przeczytane" Header="Przeczytane książki">
-                <Grid>
+                <Grid Background="LemonChiffon">
 
 
                     <!-- LISTA KSIĄŻEK -->
@@ -453,7 +428,7 @@
                         <ListView x:Name="ksiazki3"  
                                   SelectedItem="{Binding TabListaVM.BiezacaKsiazka}" 
                                   ItemsSource="{Binding TabListaVM.Przeczytane}"
-                                  SelectedIndex="{Binding TabListaVM.IndeksZaznaczonejKsiazki, Mode=TwoWay}" Margin="0,5,0,0" Height="315">
+                                  SelectedIndex="{Binding TabListaVM.IndeksZaznaczonejKsiazki, Mode=TwoWay}" Margin="5" Height="315">
 
 
                             <ListView.View>
