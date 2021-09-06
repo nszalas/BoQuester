@@ -31,9 +31,13 @@ namespace WpfApp1.Model
             currentUser = UserRepository.getUser(username);
             isAuthenticated = UserAuthentication.Authenticate(username, password);
 
-            var toread = BookUserRepository.getListWantToRead(currentUser.UserId);
-            foreach (var book in toread)
+            var to_read = BookUserRepository.getListWantToRead(currentUser.UserId);
+            foreach (var book in to_read)
                 Model.DoPrzeczytania.Add(book);
+
+            var read = BookUserRepository.getListAlreadyRead(currentUser.UserId);
+            foreach (var book in read)
+                Model.Przeczytane.Add(book);
         }
 
         public static Session GetOrCreateSession(string username, string password)

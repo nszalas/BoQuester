@@ -48,7 +48,23 @@ namespace WpfApp1.DAL.Repositories
             return ownerships;
         }
 
-            public static bool AddOwnershipToDataBase(BookUser ownership)
+        public static List<Book> getListAlreadyRead(sbyte? user_id)
+        {
+            List<Book> ownerships = new List<Book>();
+            using (var connection = DBConnection.Instance.Connection)
+            {
+                MySqlCommand command = new MySqlCommand($"SELECT book.book_id, book.title, book.release_date, book.publisher, book.category, book.description, book.rate FROM booksusers LEFT JOIN book ON book.book_id = booksusers.book_id WHERE booksusers.is_read=1 AND booksusers.user_id=@user_id", connection);
+                command.Parameters.AddWithValue("@user_id", user_id);
+                connection.Open();
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                    ownerships.Add(new Book(reader));
+                connection.Close();
+            }
+            return ownerships;
+        }
+
+        public static bool AddOwnershipToDataBase(BookUser ownership)
         {
             bool state = false;
             using (var connection = DBConnection.Instance.Connection)

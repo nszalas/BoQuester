@@ -15,7 +15,7 @@ namespace WpfApp1.Model
         public ObservableCollection<User> Users { get; set; } = new ObservableCollection<User>();
         public ObservableCollection<Book> Ksiazki { get; set; } = new ObservableCollection<Book>();
         public static ObservableCollection<Book> DoPrzeczytania { get; set; } = new ObservableCollection<Book>();
-        public ObservableCollection<Book> Przeczytane { get; set; } = new ObservableCollection<Book>();
+        public static ObservableCollection<Book> Przeczytane { get; set; } = new ObservableCollection<Book>();
       
 
         // get data from database to collection
@@ -89,6 +89,13 @@ namespace WpfApp1.Model
         {
             DoPrzeczytania.Add(ksiazka);
             BookUser user = new BookUser((sbyte)Session.CurrentUser.UserId, (sbyte)ksiazka.Id, false, true, 0);
+            BookUserRepository.AddOwnershipToDataBase(user);
+        }
+
+        public void DodajKsiazkePrzeczytana(Book ksiazka)
+        {
+            Przeczytane.Add(ksiazka);
+            BookUser user = new BookUser((sbyte)Session.CurrentUser.UserId, (sbyte)ksiazka.Id, true, false, 0);
             BookUserRepository.AddOwnershipToDataBase(user);
         }
 

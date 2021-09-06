@@ -140,6 +140,31 @@ namespace WpfApp1.ViewModel
             }
 
         }
+       
+
+        private ICommand edytuj = null;
+
+        public ICommand Edytuj
+        {
+            get
+            {
+                if (edytuj == null)
+                    edytuj = new RelayCommand(
+                    arg =>
+                    {
+                        model.EdytujKsiazkeWBazie(new Book(Title, ReleaseDate, (sbyte)Publisher, Category, Description), (sbyte)BiezacaKsiazka.Id);
+                        IdZaznaczenia = -1;
+                        DodawanieDostepne = true;
+                    }
+                         ,
+                    arg => (BiezacaKsiazka?.Title != Title) || (BiezacaKsiazka?.ReleaseDate != ReleaseDate) || (BiezacaKsiazka?.Publisher != Publisher) || (BiezacaKsiazka?.Category !=Category) || (BiezacaKsiazka?.Description != Description) 
+                   );
+
+
+                return edytuj;
+            }
+        }
+
         private void CzyscFormularz()
         {
             Title = "";
@@ -191,28 +216,6 @@ namespace WpfApp1.ViewModel
             }
         }
 
-        private ICommand edytuj = null;
-
-        public ICommand Edytuj
-        {
-            get
-            {
-                if (edytuj == null)
-                    edytuj = new RelayCommand(
-                    arg =>
-                    {
-                        model.EdytujKsiazkeWBazie(new Book(Title, ReleaseDate, (sbyte)Publisher, Category, Description), (sbyte)BiezacaKsiazka.Id);
-                        IdZaznaczenia = -1;
-                        DodawanieDostepne = true;
-                    }
-                         ,
-                    arg => (BiezacaKsiazka?.Title != Title) || (BiezacaKsiazka?.ReleaseDate != ReleaseDate) || (BiezacaKsiazka?.Publisher != Publisher) || (BiezacaKsiazka?.Category !=Category) || (BiezacaKsiazka?.Description != Description) 
-                   );
-
-
-                return edytuj;
-            }
-        }
 
         private ICommand dodaj_doPrzeczytania = null;
 
@@ -235,6 +238,31 @@ namespace WpfApp1.ViewModel
 
 
                 return dodaj_doPrzeczytania;
+            }
+
+        }
+
+        private ICommand dodaj_Przeczytane = null;
+
+        public ICommand Dodaj_Przeczytane
+        {
+
+            get
+            {
+                if (dodaj_Przeczytane == null)
+                    dodaj_Przeczytane = new RelayCommand(
+                        arg =>
+                        {
+
+                            model.DodajKsiazkePrzeczytana(TabListaViewModel.BiezacaKsiazka);
+                            IdZaznaczenia = -1;
+                        }
+                        ,
+                        arg => true
+                        );
+
+
+                return dodaj_Przeczytane;
             }
 
         }
