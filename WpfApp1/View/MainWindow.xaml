@@ -130,7 +130,11 @@
                                         Command="{Binding TabDodajKsiazkiVM.Dodaj_doPrzeczytania}"
                                         HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="1.881,0.51" Width="199" Height="22" Margin="80,10,0,0"
                                  />
-                           
+                            <Button x:Name="Dodaj_Przeczytane" Content="Oznacz jako przeczytane"
+                                    
+                                        Command="{Binding TabDodajKsiazkiVM.Dodaj_Przeczytane}"
+                                        HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="1.881,0.51" Width="199" Height="22" Margin="30,10,0,0"
+                                 />
 
                         </DockPanel>
 
@@ -141,7 +145,109 @@
                 </Grid>
             </TabItem>
 
-           
+            <TabItem x:Name="Autorzy" Header="Autorzy">
+
+            </TabItem>
+            <TabItem x:Name="Szukaj" Header="Szukaj książki">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="0.4*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="3*"/>
+                    </Grid.RowDefinitions>
+                    <TextBox x:Name="nKsiazki" Grid.Row="0" Grid.Column="0" Background="Gray" Text="{Binding SzukajKsiazki.Title1, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Button x:Name="bKsiazki" Grid.Column="1" Grid.Row="0" Content="Szukaj" Command="{Binding SzukajKsiazki.Szukaj}"/>
+
+                    <ListView x:Name="lbksiazki"   
+                                  ItemsSource="{Binding SzukajKsiazki.Info}" Grid.Row="1" Grid.ColumnSpan="2" Background="Green">
+
+
+
+                        <ListView.View>
+                            <GridView>
+                                <GridView.Columns>
+                                    <GridViewColumn Width="150" x:Name="kolumna_Tytul1">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Title}" FontSize="14"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="Tytuł" Background="AliceBlue" Width="{Binding ActualWidth, ElementName=kolumna_Tytul}" >
+                                                 <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="MouseDown">
+                                                        <i:InvokeCommandAction Command="{Binding TabListaVM.ZaladujWszystkieKsiazki}"/>
+                                                    </i:EventTrigger>
+                                                  </i:Interaction.Triggers>
+                                            </TextBlock>
+                                        </GridViewColumn.Header>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding ReleaseDate}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="Data wydania"></TextBlock>
+                                        </GridViewColumn.Header>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn >
+                                        <GridViewColumn.CellTemplate >
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Publisher}"  HorizontalAlignment="Stretch"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="Wydawnictwo"></TextBlock>
+                                        </GridViewColumn.Header>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn Width="150">
+                                        <GridViewColumn.CellTemplate >
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Category}"  HorizontalAlignment="Stretch"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="Kategoria"></TextBlock>
+                                        </GridViewColumn.Header>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn Width="280">
+                                        <GridViewColumn.CellTemplate >
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Description}"  HorizontalAlignment="Stretch"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="Opis"></TextBlock>
+                                        </GridViewColumn.Header>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn >
+                                        <GridViewColumn.CellTemplate >
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Rate}"  HorizontalAlignment="Stretch"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="Ocena"></TextBlock>
+                                        </GridViewColumn.Header>
+                                    </GridViewColumn>
+                                </GridView.Columns>
+                            </GridView>
+                        </ListView.View>
+
+                    </ListView>
+                </Grid>
+
+            </TabItem>
 
             <TabItem x:Name="Dodaj_ksiazke" Header="Dodaj książkę">
                 <Grid>
@@ -322,19 +428,11 @@
                             </ListView.View>
 
                         </ListView>
-                        <DockPanel>
-                            <Button x:Name="Dodaj_Przeczytane" Content="Oznacz jako przeczytane"
-                                    
-                                        Command="{Binding TabDodajKsiazkiVM.Dodaj_Przeczytane}"
-                                        HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="1.881,0.51" Width="199" Height="22" Margin="100,30,0,0"
-                                 />
-                            <Button Grid.Column="1" Content="Usuń" 
+                        <Button Grid.Column="1" Content="Usuń" 
                                     
                                     Command="{Binding TabDodajKsiazkiVM.Usun_ksiazke}" CommandParameter="usun_do_przeczytania"
-                                    HorizontalAlignment="Center" VerticalAlignment="Center" Width="199" Height="22" Margin="0,30,0,0"
+                                    HorizontalAlignment="Center" VerticalAlignment="Center" Width="50" Height="25"
                              />
-                        </DockPanel>
-                        
                     </StackPanel>
 
                     <!--<ListBox x:Name="ksiazki_lista" Grid.Column="0" ItemsSource="{Binding Books}" IsSynchronizedWithCurrentItem="true" Margin="0,40,0,0">
@@ -438,7 +536,7 @@
                         <Button Grid.Column="1" Content="Usuń" 
                                     
                                     Command="{Binding TabDodajKsiazkiVM.Usun_ksiazke}" CommandParameter="usun_przeczytana"
-                                    HorizontalAlignment="Center" VerticalAlignment="Center" Width="199" Height="22" Margin="0,20,0,0"
+                                    HorizontalAlignment="Center" VerticalAlignment="Center" Width="50" Height="25"
                              />
 
                     </StackPanel>
