@@ -13,6 +13,8 @@ namespace WpfApp1.Model
 
     class Model
     {
+        
+
         public ObservableCollection<User> Users { get; set; } = new ObservableCollection<User>();
         public ObservableCollection<Book> Ksiazki { get; set; } = new ObservableCollection<Book>();
         public static ObservableCollection<Book> DoPrzeczytania { get; set; } = new ObservableCollection<Book>();
@@ -46,18 +48,15 @@ namespace WpfApp1.Model
         }
 
         
-        public ObservableCollection<Book> Ksiazki1 { get; set; } = new ObservableCollection<Book>();
 
         public ObservableCollection<Book> ZnajdzKsiazkePoTytule(string tytul)
         {
-
+            
 
             foreach (var book in Ksiazki)
-            {
-                Debug.WriteLine(book.Title);
-                Debug.WriteLine(tytul);
-                string i = book.Title;
-                if (i.Contains(tytul))
+            { 
+                string i = book.Title.ToLower();
+                if (i.Contains(tytul.ToLower()))
                     Znalezione.Add(book);
 
             }
