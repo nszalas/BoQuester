@@ -231,6 +231,7 @@ namespace WpfApp1.ViewModel
 
                             model.DodajKsiazkeDoPrzeczytania(TabListaViewModel.BiezacaKsiazka);  
                             IdZaznaczenia = -1;
+                            System.Windows.MessageBox.Show("Pozycja została dodana do listy");
                         }
                         ,
                         arg => true
@@ -256,6 +257,7 @@ namespace WpfApp1.ViewModel
 
                             model.DodajKsiazkePrzeczytana(TabListaViewModel.BiezacaKsiazka);
                             IdZaznaczenia = -1;
+                            System.Windows.MessageBox.Show("Pozycja została przeniesiona");
                         }
                         ,
                         arg => true
@@ -283,6 +285,7 @@ namespace WpfApp1.ViewModel
                             else
                                 model.UsunKsiazke(TabListaViewModel.BiezacaKsiazka, Model.Przeczytane);
                             IdZaznaczenia = -1;
+                            System.Windows.MessageBox.Show("Usunięto pomyślnie");
                         }
                         ,
                         arg => true
@@ -294,29 +297,6 @@ namespace WpfApp1.ViewModel
 
         }
 
-        //private ICommand usun_ksiazke_przeczytana = null;
-
-        //public ICommand Usun_ksiazke_przeczytana
-        //{
-
-        //    get
-        //    {
-        //        if (usun_ksiazke_przeczytana == null)
-        //            usun_ksiazke_przeczytana = new RelayCommand(
-        //                arg =>
-        //                {
-        //                    model.UsunKsiazke(TabListaViewModel.BiezacaKsiazka, Model.DoPrzeczytania);
-        //                    IdZaznaczenia = -1;
-        //                }
-        //                ,
-        //                arg => true
-        //                );
-
-
-        //        return usun_ksiazke_przeczytana;
-        //    }
-
-        //}
 
 
     }

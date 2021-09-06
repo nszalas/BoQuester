@@ -118,12 +118,3 @@ namespace WpfApp1.Model
     }
 }
 
-//public BookUser(sbyte userId, sbyte bookId, bool isRead, bool wantToRead, int rate = 0)
-//{
-//    BooksUsersId = null;
-//    UserId = userId;
-//    BookId = bookId;
-//    IsRead = isRead;
-//    WantToRead = wantToRead;
-//    Rate = rate;
-//}
